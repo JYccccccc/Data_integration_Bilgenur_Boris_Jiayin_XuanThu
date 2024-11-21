@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType, DoubleType, IntegerType
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType, IntegerType,TimestampType, FloatType
 from pyspark.sql.functions import col
 
 # Initiation SparkSession
@@ -34,13 +34,37 @@ site_info_schema = StructType([
 ])
 
 # Stream data schema (based on LTM_Data)
-stream_data_schema = StructType([
+schema = StructType([
+    StructField("SITE_ID", StringType(), True),
     StructField("PROGRAM_ID", StringType(), True),
-    StructField("PARAMETER", StringType(), True),
-    StructField("VALUE", DoubleType(), True),
-    StructField("UNIT", StringType(), True),
-    StructField("DATE", StringType(), True),
-    StructField("SITE_ID", StringType(), True)
+    StructField("DATE_SMP", TimestampType(), True),
+    StructField("SAMPLE_LOCATION", StringType(), True),
+    StructField("SAMPLE_TYPE", StringType(), True),
+    StructField("WATERBODY_TYPE", StringType(), True),
+    StructField("SAMPLE_DEPTH", FloatType(), True),
+    StructField("TIME_SMP", StringType(), True),
+    StructField("ANC_UEQ_L", FloatType(), True),
+    StructField("CA_UEQ_L", FloatType(), True),
+    StructField("CHL_A_UG_L", FloatType(), True),
+    StructField("CL_UEQ_L", FloatType(), True),
+    StructField("COND_UM_CM", FloatType(), True),
+    StructField("DOC_MG_L", FloatType(), True),
+    StructField("F_UEQ_L", FloatType(), True),
+    StructField("K_UEQ_L", FloatType(), True),
+    StructField("MG_UEQ_L", FloatType(), True),
+    StructField("NA_UEQ_L", FloatType(), True),
+    StructField("NH4_UEQ_L", FloatType(), True),
+    StructField("NO3_UEQ_L", FloatType(), True),
+    StructField("N_TD_UEQ_L", FloatType(), True),
+    StructField("PH_EQ", FloatType(), True),
+    StructField("PH_FLD", FloatType(), True),
+    StructField("PH_LAB", FloatType(), True),
+    StructField("PH_STVL", FloatType(), True),
+    StructField("P_TL_UEQ_L", FloatType(), True),
+    StructField("SECCHI_M", FloatType(), True),
+    StructField("SIO2_MG_L", FloatType(), True),
+    StructField("SO4_UEQ_L", FloatType(), True),
+    StructField("WTEMP_DEG_C", FloatType(), True)
 ])
 
 # Read static data from HDFS

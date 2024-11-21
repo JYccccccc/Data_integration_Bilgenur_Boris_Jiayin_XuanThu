@@ -3,7 +3,7 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, FloatType, IntegerType
 
 # Creer SparkSession
-spark = SparkSession.builder \
+streaming_df = SparkSession.builder \
     .appName("AcidifiedSurfaceWaterStreamProcessor") \
     .getOrCreate()
 
@@ -45,22 +45,23 @@ schema = StructType([
     StructField("WTEMP_DEG_C", FloatType(), True)
 ])
 
+
 # Obtenir les données en streaming depuis Kafka
-kafka_stream = spark \
+kafka_stream = streaming_df \
     .readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", kafka_bootstrap_servers) \
     .option("subscribe", kafka_topic) \
-    .option("startingOffsets", "latest") \
+    .option("startingOffsets", "earliest") \
     .load()
 
 # transformer les données en JSON
-parsed_stream = kafka_stream.selectExpr("CAST(value AS STRING) as json") \
-    .select(from_json("json", schema).alias("data")) \
+parsed_df = kafka_stream \
+    .selectExpr("CAST(value AS STRING) AS raw_value") \
+    .select(from_csv(col("raw_value"), schema).alias("data")) \
     .select("data.*")
-
 # Afficher les données en streaming
-query = parsed_stream \
+query = parsed_df \
     .writeStream \
     .outputMode("append") \
     .format("console") \

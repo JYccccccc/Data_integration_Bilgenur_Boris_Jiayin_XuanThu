@@ -1,22 +1,22 @@
 from pyspark.sql import SparkSession
 
-# 初始化 SparkSession
+
 spark = SparkSession.builder \
     .appName("CheckMetrics") \
     .getOrCreate()
 
-# 读取 ph_trend 数据
+
 ph_trend_df = spark.read.format("parquet").load("hdfs://namenode:8020/data/metrics/ph_trend")
 if ph_trend_df.count() == 0:
-    print("集成数据集为空")
+    print("Vide")
 else:    
-    print("ph_trend 数据:")
-    ph_trend_df.show()  # 显示 ph_trend 结果
+    print("ph_trend data:")
+    ph_trend_df.show() 
 
-# 读取 sulfur_trend 数据
+
 sulfur_trend_df = spark.read.format("parquet").load("hdfs://namenode:8020/data/metrics/sulfur_trend")
 if sulfur_trend_df.count() == 0:
-    print("集成数据集为空")
+    print("Vide")
 else:
-    print("sulfur_trend 数据:")
-    sulfur_trend_df.show()  # 显示 sulfur_trend 结果
+    print("sulfur_trend data:")
+    sulfur_trend_df.show()  
