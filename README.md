@@ -2,7 +2,12 @@
  
 # Monitoring of Acidied Surface Waters 
  
-**Author:** Bilgenur OZDEMIR, Xuan Thu NGUYEN, Boris Yves NZEUYO DJOKO, Jiayin CHEN  
+**Author:**
+Bilgenur OZDEMIR,
+Xuan Thu NGUYEN,
+Boris Yves NZEUYO DJOKO
+, Jiayin CHEN  
+
 **Tuteur:** Lionel Brice SOUOP PEKAM
 
 # Introduction
@@ -106,11 +111,11 @@ Utilisation: Ce fichier garantit la standardisation des analyses de qualité de 
 
 
 # Les étapes de Projet
-##Charger des données dans HDFS
+## Charger des données dans HDFS
 Nous utilisons l'outil en ligne de commande hdfs dfs pour effectuer les opérations suivantes sur le système de fichiers distribué HDFS :
-Création d'un répertoire : hdfs dfs -mkdir -p /data crée récursivement le répertoire /data si nécessaire.
-Copie de fichiers : hdfs dfs -put est utilisé pour copier les fichiers locaux /mnt/data/Methods_2022_8_1.xlsx et /mnt/data/Site_Information_2022_8_1.xlsx vers le répertoire /data dans HDFS.
-L'intégrité des données transférées sera vérifiée à l'aide de la commande hdfs dfs -ls /data/
+Création d'un répertoire : ```bash hdfs dfs -mkdir -p /data ``` crée récursivement le répertoire /data si nécessaire.
+Copie de fichiers : ```bash hdfs dfs -put ``` est utilisé pour copier les fichiers locaux /mnt/data/Methods_2022_8_1.xlsx et /mnt/data/Site_Information_2022_8_1.xlsx vers le répertoire /data dans HDFS.
+L'intégrité des données transférées sera vérifiée à l'aide de la commande ```bash hdfs dfs -ls /data/ ```
 
 
 ## Flux de données en continu avec Kafka depuis LTM_Data_2022_8_1.xlsx
@@ -128,7 +133,7 @@ La commend:
 
 ```bash
 $ spark-submit     --conf spark.hadoop.fs.defaultFS=hdfs://localhost:8020     --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0,com.crealytics:spark-excel_2.12:0.13.5     spark_streaming/integration.py
-
+```
 Tout d'abord, nous initialisons une application Spark via une SparkSession, avec le nom "DataIntegration". Ensuite, les chemins pour Kafka et HDFS sont configurés pour permettre la lecture et l'écriture des données.
 
 ### Configuration des sources de données
