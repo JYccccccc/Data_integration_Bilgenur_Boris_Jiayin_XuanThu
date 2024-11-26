@@ -57,22 +57,22 @@ Dans ce projet, nous avons une structure de répertoire détaillée avec différ
 
 Dossier **database** :<br>
 Ce dossier contient trois fichiers Excel principaux : LTM_Data_2022_8_1.xlsx, Methods_2022_8_1.xlsx, et Site_Information_2022_8_1.xlsx. Ces fichiers servent à stocker les données brutes sur la qualité de l'eau, les informations des sites<br> d'échantillonnage et les méthodes de mesure des différents paramètres.<br>
-
+<br>
 Dossier **hdfs_reader** :<br>
 Contient le script read_hdfs.py, qui sert à lire des données à partir du système de fichiers distribué Hadoop (HDFS). Le fichier read_hdfs.cpython-312.pyc dans le dossier __pycache__ est un fichier de cache pour ce script.<br>
-
+<br>
 Dossier **kafka** :<br>
 Contient le script producer.py, utilisé pour écrire des données dans un topic Kafka.<br>
-
+<br>
 Dossier **metrics_calculator** :<br>
 Contient le script calculate_metrics.py, qui calcule divers indicateurs et statistiques sur la qualité de l'eau.<br>
-
+<br>
 Dossier **show_resultat** :<br>
 Contient trois scripts : display_Methode.py pour afficher les informations sur les méthodes de mesure, display_data_integration.py pour montrer les résultats de l'intégration des données, et show.py pour afficher les résultats globaux.<br>
-
+<br>
 Dossier **spark_streaming** :<br>
 Contient les scripts integration.py et stream_processor.py, qui traitent et intègrent les données en temps réel à l'aide de Spark Streaming.<br>
-
+<br>
 # Compréhension des données 
 On a utilisé 3 data sets dans cet projet:
 ## LTM_Data_2022_8_1.xlsx :
@@ -92,6 +92,7 @@ Champs principaux:<br>
 
 ## Site_Information_2022_8_1.xlsx :
 Résumé du contenu: Ce fichier contient des informations géographiques et topographiques sur chaque site de prélèvement, comme des coordonnées précises, des informations sur les bassins versants, et des données sur les lacs. Cela aide à comprendre le<br> contexte géographique des sites échantillonnés.<br>
+<br>
 Champs principaux:<br>
 SITE_ID : Identifiant unique du site de prélèvement, correspondant à celui du fichier LTM_Data.<br>
 LATDD / LONDD : Coordonnées géographiques du site de prélèvement (latitude et longitude).<br>
